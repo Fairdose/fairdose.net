@@ -1,19 +1,32 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
+const command = ref('')
 
-const pwd = {
-  path: `guest@fairdose.net:${route.fullPath}$`,
-  command: ''
+const pwd = computed(() => {
+    return `guest@fairdose.net:${route.fullPath}$`
+})
+
+const commands = {
+  'ls': () => console.log('ls', command.value),
+  'cd': () => console.log('cd', command.value)
+}
+
+const bash = () => {
+  const piped = command.value.split('|')
+  const parsed = command.value.split(' ')
+  console.log(parsed, piped)
+  command.value = ''
 }
 
 </script>
 
 <template>
   <div id="fr-cli">
-    <span class="">{{ pwd.path }}</span>
-    <input v-model="pwd.command" />
+    <span class="">{{ pwd }}</span>
+    <input v-model="command" @keydown.enter="bash"/>
   </div>
 </template>
 
@@ -27,8 +40,6 @@ const pwd = {
   width: calc(100% - 2em);
   & > input {
     background: rgba(0, 0, 0, 0);
-    color: transparent;
-    text-shadow: 0 0 0 colors.$m-white;
     width: calc(100% - 2em);
     box-sizing: border-box;
     font-size: 1rem;

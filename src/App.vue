@@ -17,4 +17,8 @@ import Footer from "./layouts/Footer.vue";
 
 <style lang="scss">
 @import "src/assets/style/default.scss";
+#fr-view {
+  width: calc(100% - 2em);
+  padding: 1em;
+}
 </style>
