@@ -1,5 +1,5 @@
 <template>
-  <div contenteditable="true">index</div>
+  index
 </template>
 
 <script setup>
