@@ -27,5 +27,5 @@ jobs:
           server: "${{ secrets.DEV_FAIRDOSE_SERVER }}"
           user: "${{ secrets.DEV_FAIRDOSE_USER }}"
           user_private_key: "${{ secrets.DEV_FAIRDOSE_AUTH }}"
-          host_public_key: "${{ secrets.DEV_FAIRDOSE_SSH }}"
+          host_public_key: "${{ secrets.deploy_dev_fairdose }}"
           remote: /var/www/fairdose_net
