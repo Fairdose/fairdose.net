@@ -24,8 +24,8 @@ jobs:
       - name: SFTP Sync
         uses: swillner/sftp-sync-action@v1.0
         with:
-          server: "${{ secrets.DEV_FAIRDOSE_SERVER }}"
-          user: "${{ secrets.DEV_FAIRDOSE_USER }}"
-          user_private_key: "${{ secrets.DEV_FAIRDOSE_AUTH }}"
-          host_public_key: "${{ secrets.deploy_dev_fairdose }}"
+          server: 95.179.198.164
+          user: dev_fairdose
+          user_private_key: "${{ secrets.deploy_dev_fairdose }}"
+          host_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKT6CYP8Z9XMU5mnqkQM+CTR77L3QzHgz9blzQdQ7ZUn fairdose.dev@gmail.com
           remote: /var/www/fairdose_net
