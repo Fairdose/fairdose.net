@@ -1,13 +1,30 @@
-name: deploy-to-server
 on:
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 jobs:
-  build:
+  web-deploy:
+    name: Deploy
     runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
+    steps:
+      - name: Get repository
+        uses: actions/checkout@v2
 
+      - name: Use Node.js 14.18
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.18'
 
+      - name: Build Project
+        run: |
+          npm install
+          npm run build
 
+      - name: SFTP Sync
+        uses: swillner/sftp-sync-action@v1.0
+        with:
+          server: "${{ secrets.DEV_FAIRDOSE_SERVER }}"
+          user: "${{ secrets.DEV_FAIRDOSE_USER }}"
+          user_private_key: "${{ secrets.DEV_FAIRDOSE_AUTH }}"
+          host_public_key: "${{ secrets.DEV_FAIRDOSE_SSH }}"
+          remote: /var/www/fairdose_net

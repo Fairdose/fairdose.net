@@ -4,10 +4,11 @@
 <template>
 <div class="fr-nav">
   <div class="fr-nav__logo">
-    <div>Logo</div>
+    <router-link :to="{ path: '/' }">
+      <div>Home</div>
+    </router-link>
   </div>
   <nav class="fr-nav__container">
-    <router-link :to="{ path: '/' }">Home</router-link>
     <router-link :to="{ path: '/about' }">About</router-link>
     <router-link :to="{ path: '/stack' }">Stack</router-link>
     <router-link :to="{ path: '/contact' }">Contact</router-link>
@@ -25,6 +26,10 @@
   width: calc(100% - 2em);
   &__logo {
     cursor: pointer;
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
   &__container {
     display: flex;
