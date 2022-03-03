@@ -14,13 +14,16 @@ const commands = {
   'cd': () => console.log('cd', command.value)
 }
 
-const bash = (e) => {
-  const value = e.target.value
-  console.log(value)
+const emit = defineEmits({
+  command (payload) {
+    return payload
+  }
+})
+
+const bash = () => {
   const piped = command.value.split('|')
   const parsed = command.value.split(' ')
-  console.log(parsed, piped)
-  command.value = pwd.value
+  emit('command', {parsed, piped})
 }
 
 </script>
