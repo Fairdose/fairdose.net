@@ -1,7 +1,8 @@
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
+  workflow_dispatch:
+
 jobs:
   web-deploy:
     name: Deploy
