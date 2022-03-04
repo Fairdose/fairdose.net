@@ -44,6 +44,9 @@ const bash = () => {
   justify-content: center;
   align-items: center;
   width: calc(100% - 2em);
+  & > span {
+    margin-right: 0.5rem;
+  }
   & > textarea,
   & > input {
     background: rgba(0, 0, 0, 0);

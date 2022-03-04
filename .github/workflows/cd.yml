@@ -25,7 +25,7 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           username: fairdose_github
-          server: fairdose.net
+          server: 95.179.198.164
           ssh_private_key: ${{ secrets.dev_fairdose_ssh }}
           local_path: ./.dist
           remote_path: /var/www/fairdose_net
