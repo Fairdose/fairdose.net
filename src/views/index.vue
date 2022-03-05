@@ -1,8 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 
-const text = [`<p>Hi</p>
-<h2>Welcome to my website</h2>
+const text = [`<div class="fr-app__page-text">
+<p>Hi</p>
+<h2>Welcome to my websiteasdasdasdassdasdasdasdasd</h2>
+</div>
+>>>
+> parsing...
+> parsing..........
+> parsing...............................
 `]
 let textPosition = 0
 
@@ -13,12 +19,12 @@ let tOut
 const typeWriter = () => {
   homeText.value = text[0].substring(0, textPosition) + '█'
   if (textPosition++ != text[0].length) {
-    tOut = setTimeout(typeWriter, 50)
+    tOut = setTimeout(typeWriter, 10 / text[0].length)
   } else {
     clearTimeout(tOut)
-    const parser = new DOMParser()
-    console.log(parser.parseFromString(text[0],'text/html').body.firstChild.textContent)
-    document.querySelector('.fr-app__page-content').innerHTML = parser.parseFromString(text[0],'text/html').body.firstChild.textContent
+    const trimLine = text[0].indexOf('>>>')
+    const trimmed = text[0].slice(0, trimLine)
+    document.querySelector('.fr-app__page-text').outerHTML = trimmed
   }
 }
 
@@ -27,7 +33,9 @@ typeWriter()
 </script>
 <template>
   <div class="fr-app__page-content">
+    <div class="fr-app__page-text">
     {{ homeText }}
+    </div>
   </div>
 </template>
 
