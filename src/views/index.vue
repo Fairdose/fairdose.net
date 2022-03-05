@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 const text = [`<div class="fr-app__page-text">
 <p>Hi</p>
-<h2>Welcome to my websiteasdasdasdassdasdasdasdasd</h2>
+<h2>Welcome to my website</h2>
 </div>
 >>>
 > parsing...
