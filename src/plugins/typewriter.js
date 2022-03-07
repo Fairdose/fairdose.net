@@ -3,7 +3,6 @@ function Typewriter (text, ref, tOut, tPos = 0, domEl) {
   this.tOut = tOut
   this.tPos = tPos
   this.type = function () {
-    console.log(this)
     if (!this.text.includes('>>>')) {
       const t_parsing = `>>>
 > parsing...
