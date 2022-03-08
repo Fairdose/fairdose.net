@@ -3,11 +3,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/vue3-recommended',
-    'prettier'
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier'],
   env: {
     'vue/setup-compiler-macros': true
   },
@@ -21,7 +17,7 @@ module.exports = {
     }
   ],
   rules: {
-    'no-console': 'warn',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'space-before-function-paren': ['error', 'always'],
     'comma-dangle': 0,

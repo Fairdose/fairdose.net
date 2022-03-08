@@ -21,10 +21,16 @@ const router = createRouter({
     {
       path: '/contact',
       name: 'contact',
-      component: () => import('@/views/contact/index.vue')
+      component: () => import('@/views/stack/index.vue')
+    },
+    {
+      path: '/this-site',
+      name: 'this-site',
+      component: () => import('@/views/this_site/index.vue')
     },
     {
       path: '/:pathMatch(.*)*',
+      name: '404',
       component: () => import('@/layouts/404.vue')
     }
   ]

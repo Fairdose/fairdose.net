@@ -1,13 +1,10 @@
-<template>
-no directory exist
-</template>
+<script setup>
+import router from "../router";
 
-<script>
-export default {
-  name: "404"
-};
+router.push({path: '/404'})
 </script>
 
-<style scoped>
+<template>
+  no directory exist
+</template>
 
-</style>

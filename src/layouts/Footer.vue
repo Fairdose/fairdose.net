@@ -2,17 +2,10 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-const route = useRoute()
-
 const pwd = computed(() => {
-    return `guest@fairdose.net:${route.fullPath}$`
+    return `guest@fairdose.net:${useRoute().fullPath}$`
 })
 const command = ref(``)
-
-const commands = {
-  'ls': () => console.log('ls', command.value),
-  'cd': () => console.log('cd', command.value)
-}
 
 const emit = defineEmits({
   command (payload) {
@@ -21,18 +14,15 @@ const emit = defineEmits({
 })
 
 const bash = () => {
-  const piped = command.value.split('|')
   const parsed = command.value.split(' ')
-  emit('command', {parsed, piped})
+  emit('command', parsed)
 }
-
 </script>
 
 <template>
   <div id="fr-cli">
     <span class="">{{ pwd }}</span>
     <input v-model="command" @keydown.enter="bash">
-<!--    <textarea v-model="command" @keydown.enter="bash"/>-->
   </div>
 </template>
 
@@ -44,6 +34,9 @@ const bash = () => {
   justify-content: center;
   align-items: center;
   width: calc(100% - 2em);
+  & > span {
+    margin-right: 0.5rem;
+  }
   & > textarea,
   & > input {
     background: rgba(0, 0, 0, 0);
