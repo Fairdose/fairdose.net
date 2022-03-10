@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import Typewriter from "../plugins/typewriter";
 
 const text = [
   `<div class="fr-app__page-text">
@@ -8,15 +7,6 @@ const text = [
   <p>Welcome to my website</p>
 </div>`
 ]
-
-const homeText = ref(``)
-
-const targetDOMEl = document.querySelector('.fr-app__page-text')
-
-const textT = new Typewriter(text, homeText.value, undefined, 0, targetDOMEl)
-
-textT.type()
-/*
 let textPosition = 0
 
 const homeText = ref(``)
@@ -34,7 +24,7 @@ const typeWriter = () => {
   }
   homeText.value = text[0].substring(0, textPosition) + '█'
   if (textPosition++ !== text[0].length) {
-    tOut = setTimeout(typeWriter, 1)
+    tOut = setTimeout(typeWriter, 10)
   } else {
     clearTimeout(tOut)
     const trimLine = text[0].indexOf('>>>')
@@ -45,7 +35,7 @@ const typeWriter = () => {
 }
 
 typeWriter()
- */
+
 </script>
 <template>
   <div class="fr-app__page-content">
