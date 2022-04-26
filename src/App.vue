@@ -22,16 +22,18 @@ provide('terminal-focused', {
 
 <template>
   <div id="fr-app-background">
+    <!--
     <section class="stage">
       <figure class="ball"><span class="shadow"></span></figure>
     </section>
+    -->
   </div>
   <div class="fr-app">
-    <Header />
+    <!--<Header />-->
     <div class="fr-app__view">
       <RouterView/>
     </div>
-    <Footer @command="commandResult"/>
+    <!--<Footer @command="commandResult"/>-->
   </div>
 </template>
 

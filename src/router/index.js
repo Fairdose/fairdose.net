@@ -8,6 +8,8 @@ const router = createRouter({
       name: 'home',
       component: () => import('@/views/index.vue')
     },
+    /*
+    These will be active when i have the time
     {
       path: '/about',
       name: 'about',
@@ -28,6 +30,7 @@ const router = createRouter({
       name: 'this-site',
       component: () => import('@/views/this_site/index.vue')
     },
+     */
     {
       path: '/:pathMatch(.*)*',
       name: '404',
