@@ -2,20 +2,30 @@
 import { ref } from 'vue'
 
 const text = [
-  `<div class="fr-app__page-text">
-    <p>Hi</p>
-    <p>Welcome to my website</p>
-</div>`
+`<div>
+  <em>Imagine my creative<br>logo here</em>
+</div>
+      <h4>Batur Akçura</h4>
+      <div class="profiles">
+        <a href="https://github.com/Fairdose">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/batur-ak%C3%A7ura-728259134/">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </div>`
 ]
 let textPosition = 0
 
 const homeText = ref(``)
+let typed = ref(false)
 
 let tOut
 
 const typeWriter = () => {
   if (!text[0].includes('>>>')) {
-    const t_parsing = `>>>
+    const t_parsing = `
+>>>
 > parsing...
 > parsing..........
 > parsing...............................
@@ -26,37 +36,52 @@ const typeWriter = () => {
   if (textPosition++ !== text[0].length) {
     tOut = setTimeout(typeWriter, 10)
   } else {
-    clearTimeout(tOut)
-    const trimLine = text[0].indexOf('>>>')
-    document.querySelector('.fr-app__page-text').outerHTML = text[0]
-      .slice(0, trimLine)
-      .replace(/\n/g, '', '')
+    typed.value = true
   }
 }
 
-/*typeWriter()*/
+typeWriter()
 
 </script>
 <template>
   <div class="fr-app__page-content">
-    <div class="fr-app__page-text">
-      <div> logo container</div>
-      <div>Batur Akçura</div>
+    <div v-if="!typed">
+      {{ homeText }}
+    </div>
+    <div v-if="typed" class="fr-app__page-text">
+      <div><em>Imagine my creative<br>logo here</em></div>
+      <h4>Batur Akçura</h4>
       <div class="profiles">
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
+        <a href="https://github.com/Fairdose">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/batur-ak%C3%A7ura-728259134/">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
       </div>
     </div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
+.fr-app__page-content {
+  height: 100%;
+}
 .fr-app__page-text {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
+  text-align: center;
+  h4 {
+    font-size: 4em;
+  }
+  .profiles {
+    & > * {
+      margin: 0.5em;
+      font-size: 2.5em;
+    }
+  }
 }
 </style>
