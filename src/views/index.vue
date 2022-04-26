@@ -3,8 +3,8 @@ import { ref } from 'vue'
 
 const text = [
   `<div class="fr-app__page-text">
-  <p>Hi</p>
-  <p>Welcome to my website</p>
+    <p>Hi</p>
+    <p>Welcome to my website</p>
 </div>`
 ]
 let textPosition = 0
@@ -34,15 +34,29 @@ const typeWriter = () => {
   }
 }
 
-typeWriter()
+/*typeWriter()*/
 
 </script>
 <template>
   <div class="fr-app__page-content">
     <div class="fr-app__page-text">
-      {{ homeText }}
+      <div> logo container</div>
+      <div>Batur Akçura</div>
+      <div class="profiles">
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+      </div>
     </div>
   </div>
 </template>
 
-<style></style>
+<style>
+.fr-app__page-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+</style>
