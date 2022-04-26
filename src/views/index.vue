@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 const text = [
 `<div>
-  <em>Imagine my creative<br>logo here</em>
+  compile my immersive nft powered strapped with boot leveled upped with react illustration
 </div>
       <h4>Batur Akçura</h4>
       <div class="profiles">
@@ -20,6 +20,7 @@ let textPosition = 0
 const homeText = ref(``)
 let typed = ref(false)
 
+// eslint-disable-next-line no-unused-vars
 let tOut
 
 const typeWriter = () => {
