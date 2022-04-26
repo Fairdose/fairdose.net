@@ -2,9 +2,8 @@
 import { ref } from 'vue'
 
 const text = [
-`<div>
+`
   compile my immersive nft powered strapped with boot leveled upped with react illustration
-</div>
       <h4>Batur Akçura</h4>
       <div class="profiles">
         <a href="https://github.com/Fairdose">
@@ -61,12 +60,45 @@ typeWriter()
         </a>
       </div>
     </div>
+    <div :class="['whoaa', { 'surprise' : typed }]">
+      <span>WHOAA!</span>
+      <img src="@/assets/img/whoaa.png">
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 .fr-app__page-content {
   height: 100%;
+  .whoaa {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    transition: bottom ease-in-out 1s;
+    & > span {
+      position: absolute;
+      right: -35px;
+      font-weight: bolder;
+      transform: rotate(12deg);
+      opacity: 0;
+      transition-duration: 3s;
+      transition-delay: 2s;
+      transition: opacity ease-in-out;
+      display: none;
+    }
+    img {
+      width: 120px;
+      object-fit: contain;
+      filter: invert(1);
+    }
+    &.surprise {
+      bottom: 0;
+      & > span {
+        display: initial;
+        opacity: 1;
+      }
+    }
+  }
 }
 .fr-app__page-text {
   display: flex;
