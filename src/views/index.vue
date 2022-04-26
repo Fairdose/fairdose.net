@@ -58,6 +58,9 @@ typeWriter()
         <a href="https://www.linkedin.com/in/batur-ak%C3%A7ura-728259134/">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
+        <a href="mailto:fairdose.dev@gmail.com">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
       </div>
     </div>
     <div :class="['whoaa', { 'surprise' : typed }]">
