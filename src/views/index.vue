@@ -110,6 +110,7 @@ typeWriter()
   height: 100%;
   flex-direction: column;
   text-align: center;
+  white-space: normal;
   h4 {
     font-family: 'Ubuntu Mono', monospace, sans-serif, Tahoma;
     font-size: 4em;
