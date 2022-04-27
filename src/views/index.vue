@@ -9,7 +9,7 @@ const text = [
         <a href="https://github.com/Fairdose">
           <i class="fa-brands fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/batur-ak%C3%A7ura-728259134/">
+        <a href="https://www.linkedin.com/in/batur-akcura">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
       </div>`
@@ -55,7 +55,7 @@ typeWriter()
         <a href="https://github.com/Fairdose">
           <i class="fa-brands fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/batur-ak%C3%A7ura-728259134/">
+        <a href="https://www.linkedin.com/in/batur-akcura">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
         <a href="mailto:fairdose.dev@gmail.com">
