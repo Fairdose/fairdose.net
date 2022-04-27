@@ -111,6 +111,7 @@ typeWriter()
   flex-direction: column;
   text-align: center;
   h4 {
+    font-family: 'Ubuntu Mono', monospace, sans-serif, Tahoma;
     font-size: 4em;
   }
   .profiles {
