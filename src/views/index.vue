@@ -3,9 +3,8 @@ import { ref } from "vue";
 
 const text = [
   `
-compile my immersive nft powered strapped with boot leveled upped with react illustration
   <div v-if="typed" class="fr-app__page-text">
-    <div><em>Imagine my creative<br>logo here</em></div>
+    {{ compile_my_immersive_nft_powered_strapped_with_boot_leveled_upped_with_react_illustration() }}
     <h4>Batur Akçura</h4>
     <div class="profiles">
       <a href="https://github.com/Fairdose">
