@@ -1,49 +1,32 @@
 <script setup>
 import { ref } from "vue";
 
-const text = [
-  `
-  <div v-if="typed" class="fr-app__page-text">
-    {{ compile_my_immersive_nft_powered_strapped_with_boot_leveled_upped_with_react_illustration() }}
-    <h4>Batur Akçura</h4>
-    <div class="profiles">
-      <a href="https://github.com/Fairdose">
-        <i class="fa-brands fa-github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/batur-akcura">
-        <i class="fa-brands fa-linkedin-in"></i>
-      </a>
-      <a href="mailto:fairdose.dev@gmail.com">
-        <i class="fa-solid fa-envelope"></i>
-      </a>
-    </div>
-  </div>
-  <div :class="['whoaa', { 'surprise' : typed }]">
-    <span>WHOAA!</span>
-    <img src="@/assets/img/whoaa.png">
-  </div>`
-];
+const text = ['<div v-if="typed" class="fr-app__page-text">\n{{ compile_my_immersive_nft_powered_strapped_with_boot_leveled_upped_with_react_illustration() }}\n    <h4>Batur Akçura</h4>\n    <div class="profiles">\n      <a href="https://github.com/Fairdose">\n        <i class="fa-brands fa-github"></i>\n      </a>\n      <a href="https://www.linkedin.com/in/batur-akcura">\n        <i class="fa-brands fa-linkedin-in"></i>\n      </a>\n      <a href="mailto:fairdose.dev@gmail.com">\n        <i class="fa-solid fa-envelope"></i>\n      </a>\n    </div>\n  </div>\n  <div :class="[\'whoaa\', { \'surprise\' : typed }]">\n<span>WHOAA!</span>\n<img src="@/assets/img/whoaa.png">\n  </div>'];
 let textPosition = 0;
 
 const homeText = ref(``);
 let typed = ref(false);
 
-// eslint-disable-next-line no-unused-vars
 let tOut;
 
 const typeWriter = () => {
   if (!text[0].includes(">>>")) {
-    const t_parsing = `
->>>
-> parsing...
-> parsing..........
-> parsing...............................
-`;
+    const t_parsing = '>>>\n' +
+      '> parsing...\n' +
+      '> parsing..........\n' +
+      '> parsing...............................';
     text[0] = text[0] + t_parsing;
   }
   homeText.value = text[0].substring(0, textPosition) + "█";
   if (textPosition++ !== text[0].length) {
     tOut = setTimeout(typeWriter, 10);
+
+    window.addEventListener('keydown', (event) => {
+      if (event.code === 'KeyC' && event.ctrlKey) {
+        clearTimeout(tOut)
+        typed.value = true
+      }
+    })
   } else {
     typed.value = true;
   }
@@ -54,6 +37,9 @@ typeWriter();
 </script>
 <template>
   <div class="fr-app__page-content">
+    <div v-if="!typed" class="force-quit-prompt">
+      You can skip, if you know what to press.
+    </div>
     <div v-if="!typed">
       {{ homeText }}
     </div>
@@ -82,6 +68,15 @@ typeWriter();
 <style lang="scss">
 .fr-app__page-content {
   height: 100%;
+
+  .force-quit-prompt {
+    position: absolute;
+    max-width: 300px;
+    transform: translateX(-50%);
+    left: 50%;
+    animation: terminate-prompt linear 3s;
+    animation-fill-mode: forwards;
+  }
 
   .whoaa {
     position: fixed;
@@ -137,6 +132,14 @@ typeWriter();
       margin: 0.5em;
       font-size: 2.5em;
     }
+  }
+}
+
+@keyframes terminate-prompt {
+  0% { opacity: 1 }
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 </style>
