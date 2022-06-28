@@ -1,50 +1,45 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const text = [
-`
-  compile my immersive nft powered strapped with boot leveled upped with react illustration
-      <h4>Batur Akçura</h4>
-      <div class="profiles">
-        <a href="https://github.com/Fairdose">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/batur-akcura">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-      </div>`
-]
-let textPosition = 0
+const text = ['<div v-if="typed" class="fr-app__page-text">\n{{ compile_my_immersive_nft_powered_strapped_with_boot_leveled_upped_with_react_illustration() }}\n    <h4>Batur Akçura</h4>\n    <div class="profiles">\n      <a href="https://github.com/Fairdose">\n        <i class="fa-brands fa-github"></i>\n      </a>\n      <a href="https://www.linkedin.com/in/batur-akcura">\n        <i class="fa-brands fa-linkedin-in"></i>\n      </a>\n      <a href="mailto:fairdose.dev@gmail.com">\n        <i class="fa-solid fa-envelope"></i>\n      </a>\n    </div>\n  </div>\n  <div :class="[\'whoaa\', { \'surprise\' : typed }]">\n<span>WHOAA!</span>\n<img src="@/assets/img/whoaa.png">\n  </div>'];
+let textPosition = 0;
 
-const homeText = ref(``)
-let typed = ref(false)
+const homeText = ref(``);
+let typed = ref(false);
 
-// eslint-disable-next-line no-unused-vars
-let tOut
+let tOut;
 
 const typeWriter = () => {
-  if (!text[0].includes('>>>')) {
-    const t_parsing = `
->>>
-> parsing...
-> parsing..........
-> parsing...............................
-`
-    text[0] = text[0] + t_parsing
+  if (!text[0].includes(">>>")) {
+    const t_parsing = '>>>\n' +
+      '> parsing...\n' +
+      '> parsing..........\n' +
+      '> parsing...............................';
+    text[0] = text[0] + t_parsing;
   }
-  homeText.value = text[0].substring(0, textPosition) + '█'
+  homeText.value = text[0].substring(0, textPosition) + "█";
   if (textPosition++ !== text[0].length) {
-    tOut = setTimeout(typeWriter, 10)
-  } else {
-    typed.value = true
-  }
-}
+    tOut = setTimeout(typeWriter, 10);
 
-typeWriter()
+    window.addEventListener('keydown', (event) => {
+      if (event.code === 'KeyC' && event.ctrlKey) {
+        clearTimeout(tOut)
+        typed.value = true
+      }
+    })
+  } else {
+    typed.value = true;
+  }
+};
+
+typeWriter();
 
 </script>
 <template>
   <div class="fr-app__page-content">
+    <div v-if="!typed" class="force-quit-prompt">
+      You can skip, if you know what to press.
+    </div>
     <div v-if="!typed">
       {{ homeText }}
     </div>
@@ -73,11 +68,22 @@ typeWriter()
 <style lang="scss">
 .fr-app__page-content {
   height: 100%;
+
+  .force-quit-prompt {
+    position: absolute;
+    max-width: 300px;
+    transform: translateX(-50%);
+    left: 50%;
+    animation: terminate-prompt linear 3s;
+    animation-fill-mode: forwards;
+  }
+
   .whoaa {
     position: fixed;
     bottom: -100%;
     left: 0;
     transition: bottom ease-in-out 1s;
+
     & > span {
       position: absolute;
       right: -35px;
@@ -89,13 +95,16 @@ typeWriter()
       transition: opacity ease-in-out;
       display: none;
     }
+
     img {
       width: 120px;
       object-fit: contain;
       filter: invert(1);
     }
+
     &.surprise {
       bottom: 0;
+
       & > span {
         display: initial;
         opacity: 1;
@@ -103,6 +112,7 @@ typeWriter()
     }
   }
 }
+
 .fr-app__page-text {
   display: flex;
   justify-content: center;
@@ -111,15 +121,25 @@ typeWriter()
   flex-direction: column;
   text-align: center;
   white-space: normal;
+
   h4 {
     font-family: 'Ubuntu Mono', monospace, sans-serif, Tahoma;
     font-size: 4em;
   }
+
   .profiles {
     & > * {
       margin: 0.5em;
       font-size: 2.5em;
     }
+  }
+}
+
+@keyframes terminate-prompt {
+  0% { opacity: 1 }
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 </style>
