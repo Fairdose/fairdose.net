@@ -47,13 +47,13 @@ typeWriter();
       <div><em>Imagine my creative<br>logo here</em></div>
       <h4>Batur Akçura</h4>
       <div class="profiles">
-        <a href="https://github.com/Fairdose">
+        <a href="https://github.com/Fairdose" target="_blank">
           <i class="fa-brands fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/batur-akcura">
+        <a href="https://www.linkedin.com/in/batur-akcura" target="_blank">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
-        <a href="mailto:fairdose.dev@gmail.com">
+        <a href="mailto:fairdose.dev@gmail.com" target="_blank">
           <i class="fa-solid fa-envelope"></i>
         </a>
       </div>
