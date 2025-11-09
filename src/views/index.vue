@@ -2,13 +2,12 @@
 import { ref } from "vue";
 
 const text = ['<div v-if="typed" class="fr-app__page-text">\n{{ compile_my_immersive_nft_powered_strapped_with_boot_leveled_upped_with_react_illustration() }}\n    <h4>Batur Akçura</h4>\n    <div class="profiles">\n      <a href="https://github.com/Fairdose">\n        <i class="fa-brands fa-github"></i>\n      </a>\n      <a href="https://www.linkedin.com/in/batur-akcura">\n        <i class="fa-brands fa-linkedin-in"></i>\n      </a>\n      <a href="mailto:fairdose.dev@gmail.com">\n        <i class="fa-solid fa-envelope"></i>\n      </a>\n    </div>\n  </div>\n  <div :class="[\'whoaa\', { \'surprise\' : typed }]">\n<span>WHOAA!</span>\n<img src="@/assets/img/whoaa.png">\n  </div>'];
-let textPosition = 0;
 
+let textPosition = 0;
 const homeText = ref(``);
-let typed = ref(false);
+const typed = ref(false);
 
 let tOut;
-
 const typeWriter = () => {
   if (!text[0].includes(">>>")) {
     const t_parsing = '>>>\n' +
@@ -17,16 +16,11 @@ const typeWriter = () => {
       '> parsing...............................';
     text[0] = text[0] + t_parsing;
   }
+
   homeText.value = text[0].substring(0, textPosition) + "█";
+
   if (textPosition++ !== text[0].length) {
     tOut = setTimeout(typeWriter, 10);
-
-    window.addEventListener('keydown', (event) => {
-      if (event.code === 'KeyC' && event.ctrlKey) {
-        clearTimeout(tOut)
-        typed.value = true
-      }
-    })
   } else {
     typed.value = true;
   }
@@ -34,11 +28,23 @@ const typeWriter = () => {
 
 typeWriter();
 
+let lastInteraction = 0;
+const handleDouble = (event) => {
+  const now = Date.now();
+  if (now - lastInteraction < 300) {
+    typed.value = true;
+    window.removeEventListener('pointerup', handleDouble);
+  }
+  lastInteraction = now;
+};
+
+window.addEventListener('pointerup', handleDouble);
 </script>
+
 <template>
   <div class="fr-app__page-content">
     <div v-if="!typed" class="force-quit-prompt">
-      You can skip, if you know what to press.
+      You can skip by double click(tap).
     </div>
     <div v-if="!typed">
       {{ homeText }}
@@ -47,13 +53,13 @@ typeWriter();
       <div><em>Imagine my creative<br>logo here</em></div>
       <h4>Batur Akçura</h4>
       <div class="profiles">
-        <a href="https://github.com/Fairdose">
+        <a href="https://github.com/Fairdose" target="_blank">
           <i class="fa-brands fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/batur-akcura">
+        <a href="https://www.linkedin.com/in/batur-akcura" target="_blank">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
-        <a href="mailto:fairdose.dev@gmail.com">
+        <a href="mailto:fairdose.dev@gmail.com" target="_blank">
           <i class="fa-solid fa-envelope"></i>
         </a>
       </div>
